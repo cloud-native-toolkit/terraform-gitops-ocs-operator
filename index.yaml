@@ -1,0 +1,8 @@
+name: gitops-ocs-operator
+type: gitops
+description: Module to populate a gitops repo with the resources to provision ocs-operator
+tags:
+  - tools
+  - gitops
+versions: []
+id: github.com/cloud-native-toolkit/terraform-gitops-ocs-operator
