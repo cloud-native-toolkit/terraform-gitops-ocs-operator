@@ -46,7 +46,7 @@ if [[ $count -eq 20 ]]; then
   echo "Timed out waiting for namespace: ${NAMESPACE}"
   exit 1
 else
-  echo "Found namespace: ${NAMESPACE}. 
+  echo "Found namespace: ${NAMESPACE}." 
 fi
 
 count=180
