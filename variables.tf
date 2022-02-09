@@ -88,15 +88,13 @@ variable "ocs_channel" {
   default     = "stable-4.8"
 }
 
-variable "server_name" {
- "ocs_sc_size_gb" {
+variable "ocs_sc_size_gb" {
   type        = string
   description = "Size for the storage class"
   default     = "2Gi"
 }
 
-variable "server_name" {
- "ocs_storage_class" {
+variable "ocs_storage_class" {
   type        = string
   description = "Default storage class"
   default     = "ocs-storagecluster-cephfs"
