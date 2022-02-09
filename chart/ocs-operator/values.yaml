@@ -1,1 +1,4 @@
-global: {}
+
+channel: "stable-4.8"
+sizeGiB: "2Gi"
+storageClass: "ocs-storagecluster-cephfs"
