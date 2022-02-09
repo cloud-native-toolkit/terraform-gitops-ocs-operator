@@ -82,8 +82,7 @@ variable "server_name" {
 
 
 
-variable "server_name" {
- "ocs_channel" {
+variable "ocs_channel" {
   type        = string
   description = "Channel for the OCS operator subscriptioin"
   default     = "stable-4.8"
