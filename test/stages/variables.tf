@@ -80,8 +80,3 @@ variable "cluster_password" {
   type        = string
   description = "The password for AWS access"
 }
-
-variable "cluster_token" {
-  type        = string
-  description = "The password for AWS access"
-}
