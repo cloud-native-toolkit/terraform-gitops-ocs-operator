@@ -1,15 +1,3 @@
-
-# # Resource Group Variables
-# variable "resource_group_name" {
-#   type        = string
-#   description = "Existing resource group where the IKS cluster will be provisioned."
-# }
-
-# variable "ibmcloud_api_key" {
-#   type        = string
-#   description = "The api key for IBM Cloud access"
-# }
-
 variable "server_url" {
   type        = string
 }
@@ -82,13 +70,18 @@ variable "gitops_namespace" {
 variable "git_username" {
 }
 
-variable aws_access_key_id { 
+variable cluster_username { 
   type        = string
-  description = "The id for AWS access"
+  description = "The username for AWS access"
 }
 
 
-variable "aws_secret_access_key" {
+variable "cluster_password" {
   type        = string
-  description = "The api key for AWS access"
+  description = "The password for AWS access"
+}
+
+variable "cluster_token" {
+  type        = string
+  description = "The password for AWS access"
 }
