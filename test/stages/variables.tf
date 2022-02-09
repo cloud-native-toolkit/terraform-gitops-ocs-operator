@@ -1,9 +1,9 @@
 
-# Resource Group Variables
-variable "resource_group_name" {
-  type        = string
-  description = "Existing resource group where the IKS cluster will be provisioned."
-}
+# # Resource Group Variables
+# variable "resource_group_name" {
+#   type        = string
+#   description = "Existing resource group where the IKS cluster will be provisioned."
+# }
 
 variable "ibmcloud_api_key" {
   type        = string
@@ -30,10 +30,10 @@ variable "cluster_name" {
   default     = ""
 }
 
-variable "cluster_type" {
-  type        = string
-  description = "The type of cluster that should be created (openshift or kubernetes)"
-}
+# variable "cluster_type" {
+#   type        = string
+#   description = "The type of cluster that should be created (openshift or kubernetes)"
+# }
 
 variable "cluster_exists" {
   type        = string
