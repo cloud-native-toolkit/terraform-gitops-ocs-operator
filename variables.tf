@@ -82,19 +82,22 @@ variable "server_name" {
 
 
 
-var "ocs_channel" {
+variable "server_name" {
+ "ocs_channel" {
   type        = string
   description = "Channel for the OCS operator subscriptioin"
   default     = "stable-4.8"
 }
 
-var "ocs_sc_size_gb" {
+variable "server_name" {
+ "ocs_sc_size_gb" {
   type        = string
   description = "Size for the storage class"
   default     = "2Gi"
 }
 
-var "ocs_storage_class" {
+variable "server_name" {
+ "ocs_storage_class" {
   type        = string
   description = "Default storage class"
   default     = "ocs-storagecluster-cephfs"
