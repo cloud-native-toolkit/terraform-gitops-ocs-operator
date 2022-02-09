@@ -46,18 +46,24 @@ if [[ $count -eq 20 ]]; then
   echo "Timed out waiting for namespace: ${NAMESPACE}"
   exit 1
 else
-  echo "Found namespace: ${NAMESPACE}. Sleeping for 30 seconds to wait for everything to settle down"
-  sleep 30
+  echo "Found namespace: ${NAMESPACE}. 
 fi
 
+count=180
+until [[ $count -eq 0 ]]; do
+  echo "Pausing for $count seconds to wait for everything to settle down"
+  count=$((count - 10))
+  sleep 10
+done
+
 count=0
-until kubectl get sc -A ocs || [[ $count -eq 20 ]]; do
+until kubectl get sc -A ocs || [[ $count -eq 40 ]]; do
   echo "Waiting for sc/ocs"
   count=$((count + 1))
   sleep 15
 done
 
-if [[ $count -eq 20 ]]; then
+if [[ $count -eq 40 ]]; then
   echo "Timed out waiting for sc/ocs"
   kubectl get sc
   exit 1

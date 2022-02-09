@@ -4,6 +4,9 @@ locals {
   yaml_dir      = "${path.cwd}/.tmp/${local.name}/chart/${local.name}"
   service_url   = "http://${local.name}.${var.namespace}"
   values_content = {
+    channel = var.ocs_channel
+    sizeGiB = var.ocs_sc_size_gb
+    storageClass = var.ocs_storage_class
   }
   layer = "services"
   type  = "operators"
