@@ -90,8 +90,8 @@ variable "ocs_channel" {
 
 variable "ocs_sc_size_gb" {
   type        = string
-  description = "Size for the storage class"
-  default     = "0.5TiB"
+  description = "Size for the storage class (#size must match this regex: '^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$')"
+  default     = "5Gi"
 }
 
 variable "ocs_storage_class" {
