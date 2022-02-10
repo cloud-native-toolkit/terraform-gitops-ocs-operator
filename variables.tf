@@ -91,7 +91,7 @@ variable "ocs_channel" {
 variable "ocs_sc_size_gb" {
   type        = string
   description = "Size for the storage class"
-  default     = "2Gi"
+  default     = "0.5TiB"
 }
 
 variable "ocs_storage_class" {

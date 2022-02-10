@@ -1,4 +1,4 @@
 
 channel: "stable-4.8"
-sizeGiB: "2Gi"
+sizeGiB: "0.5TiB"
 storageClass: "ocs-storagecluster-cephfs"
