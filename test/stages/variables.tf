@@ -1,15 +1,3 @@
-
-# Resource Group Variables
-variable "resource_group_name" {
-  type        = string
-  description = "Existing resource group where the IKS cluster will be provisioned."
-}
-
-variable "ibmcloud_api_key" {
-  type        = string
-  description = "The api key for IBM Cloud access"
-}
-
 variable "server_url" {
   type        = string
 }
@@ -30,10 +18,10 @@ variable "cluster_name" {
   default     = ""
 }
 
-variable "cluster_type" {
-  type        = string
-  description = "The type of cluster that should be created (openshift or kubernetes)"
-}
+# variable "cluster_type" {
+#   type        = string
+#   description = "The type of cluster that should be created (openshift or kubernetes)"
+# }
 
 variable "cluster_exists" {
   type        = string
@@ -80,4 +68,15 @@ variable "gitops_namespace" {
 }
 
 variable "git_username" {
+}
+
+variable cluster_username { 
+  type        = string
+  description = "The username for AWS access"
+}
+
+
+variable "cluster_password" {
+  type        = string
+  description = "The password for AWS access"
 }

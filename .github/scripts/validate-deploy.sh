@@ -46,25 +46,28 @@ if [[ $count -eq 20 ]]; then
   echo "Timed out waiting for namespace: ${NAMESPACE}"
   exit 1
 else
-  echo "Found namespace: ${NAMESPACE}. Sleeping for 30 seconds to wait for everything to settle down"
-  sleep 30
+  echo "Found namespace: ${NAMESPACE}." 
 fi
 
-DEPLOYMENT="${COMPONENT_NAME}-${BRANCH}"
+count=180
+until [[ $count -eq 0 ]]; do
+  echo "Pausing for $count seconds to wait for everything to settle down"
+  count=$((count - 10))
+  sleep 10
+done
+
 count=0
-until kubectl get deployment "${DEPLOYMENT}" -n "${NAMESPACE}" || [[ $count -eq 20 ]]; do
-  echo "Waiting for deployment/${DEPLOYMENT} in ${NAMESPACE}"
+until kubectl get sc -A ocs || [[ $count -eq 40 ]]; do
+  echo "Waiting for sc/ocs"
   count=$((count + 1))
   sleep 15
 done
 
-if [[ $count -eq 20 ]]; then
-  echo "Timed out waiting for deployment/${DEPLOYMENT} in ${NAMESPACE}"
-  kubectl get all -n "${NAMESPACE}"
+if [[ $count -eq 40 ]]; then
+  echo "Timed out waiting for sc/ocs"
+  kubectl get sc
   exit 1
 fi
-
-kubectl rollout status "deployment/${DEPLOYMENT}" -n "${NAMESPACE}" || exit 1
 
 cd ..
 rm -rf .testrepo

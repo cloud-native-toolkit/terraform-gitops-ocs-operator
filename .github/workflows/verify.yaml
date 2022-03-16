@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         testcase:
-          - ocp4_latest_gitops
+          - azure_latest_gitops
       #      max-parallel: 1
       fail-fast: false
 
@@ -34,6 +34,11 @@ jobs:
         name: Set up variables
         env:
           GIT_ORG: ${{ secrets.GIT_ORG }}
+          AWS_CLUSTER_USERNAME: ${{ secrets.AWS_CLUSTER_USERNAME }}
+          AWS_CLUSTER_PASSWORD: ${{ secrets.AWS_CLUSTER_PASSWORD }}
+          IBM_CLUSTER_USERNAME: "apikey"
+          IBM_CLUSTER_PASSWORD: ${{ secrets.IBMCLOUD_API_KEY }}
+          ENVIRONMENT: ${{ matrix.testcase }}
         shell: bash
         run: |
           repo=$(echo ${GITHUB_REPOSITORY} | sed -E "s~.*/[^-]+-(.*)~\1~g")
@@ -43,6 +48,15 @@ jobs:
           org="${GIT_ORG:-cloud-native-toolkit-test}"
           echo "Org: $org"
           echo "::set-output name=org::$org"
+
+          if [[ $ENVIRONMENT =~ ^aws ]]; then
+            echo "::set-output name=CLUSTER_USERNAME::$AWS_CLUSTER_USERNAME"
+            echo "::set-output name=CLUSTER_PASSWORD::$AWS_CLUSTER_PASSWORD"
+          else 
+            echo "::set-output name=CLUSTER_USERNAME::$IBM_CLUSTER_USERNAME"
+            echo "::set-output name=CLUSTER_PASSWORD::$IBM_CLUSTER_PASSWORD"
+          fi
+
 
       - name: Verify deploy on ${{ matrix.testcase }}
         uses: cloud-native-toolkit/action-module-verify-deploy@main
@@ -58,6 +72,14 @@ jobs:
           TF_VAR_ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
           IBMCLOUD_API_KEY: ${{ secrets.IBMCLOUD_API_KEY }}
 
+          TF_VAR_azure_client_id: ${{ secrets.AZURE_CLIENT_ID }}
+          TF_VAR_azure_client_secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          TF_VAR_azure_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          TF_VAR_azure_tenant_id: ${{ secrets.AZURE_TENANT_ID }}
+
+          TF_VAR_cluster_username: ${{ secrets.AZURE_CLUSTER_USERNAME }}
+          TF_VAR_cluster_password: ${{ secrets.AZURE_CLUSTER_PASSWORD }}
+
       - name: Verify destroy on ${{ matrix.testcase }}
         uses: cloud-native-toolkit/action-module-verify-destroy@main
         if: ${{ always() }}
@@ -71,6 +93,14 @@ jobs:
           TF_VAR_bootstrap_prefix: ${{ steps.variables.outputs.repo }}
           TF_VAR_ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
           IBMCLOUD_API_KEY: ${{ secrets.IBMCLOUD_API_KEY }}
+
+          TF_VAR_azure_client_id: ${{ secrets.AZURE_CLIENT_ID }}
+          TF_VAR_azure_client_secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          TF_VAR_azure_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          TF_VAR_azure_tenant_id: ${{ secrets.AZURE_TENANT_ID }}
+
+          TF_VAR_cluster_username: ${{ secrets.AZURE_CLUSTER_USERNAME }}
+          TF_VAR_cluster_password: ${{ secrets.AZURE_CLUSTER_PASSWORD }}
 
   verifyMetadata:
     runs-on: ubuntu-latest

@@ -79,3 +79,24 @@ variable "server_name" {
   description = "The name of the server"
   default     = "default"
 }
+
+
+
+variable "ocs_channel" {
+  type        = string
+  description = "Channel for the OCS operator subscriptioin"
+  default     = "stable-4.8"
+}
+
+variable "ocs_sc_size_gb" {
+  type        = string
+  description = "Size for the storage class"
+  default     = "5Gi"
+}
+# (#size must match this regex: '^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$')
+
+variable "ocs_storage_class" {
+  type        = string
+  description = "Default storage class"
+  default     = "ocs-storagecluster-cephfs"
+}

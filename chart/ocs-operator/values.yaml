@@ -1,0 +1,5 @@
+
+channel: "stable-4.8"
+sizeGiB: "5"
+#size must match this regex: '^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$'
+storageClass: "ocs-storagecluster-cephfs"
